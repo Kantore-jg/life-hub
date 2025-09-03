@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubuzima Hub - Version Améliorée</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .challenges-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #4a5568;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .challenge-card {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .challenge-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .challenge-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        .challenge-description {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .new-feature {
+            border-left-color: #48bb78;
+            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+        }
+        
+        .new-feature::before {
+            background: linear-gradient(90deg, #48bb78, #38b2ac);
+        }
+        
+        .new-feature .challenge-icon {
+            background: linear-gradient(135deg, #48bb78 0%, #38b2ac 100%);
+        }
+        
+        .new-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #48bb78;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .solutions-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .solution-item {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .solution-title {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .benefits {
+            background: #e6fffa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .benefits h3 {
+            color: #2c7a7b;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .benefits-list {
+            list-style: none;
+        }
+        
+        .benefits-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .benefits-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .challenges-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        .login{
+             position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 Ubuzima Hub</h1>
+            <h3 class="login"><a href="login.php">Login</a></h3>
+            <p>Solution numérique améliorée pour la transparence et l'amélioration des services publics à Bujumbura</p>
+        </div>
+        
+        <div class="challenges-section">
+            <h2 class="section-title">Les défis de Bujumbura</h2>
+            
+            <div class="challenges-grid">
+                <div class="challenge-card">
+                    <div class="challenge-icon">💬</div>
+                    <h3 class="challenge-title">Communication limitée</h3>
+                    <p class="challenge-description">Manque de communication directe entre citoyens et autorités</p>
+                </div>
+                
+                <div class="challenge-card">
+                    <div class="challenge-icon">💧</div>
+                    <h3 class="challenge-title">Services publics</h3>
+                    <p class="challenge-description">Coupures d'eau/électricité, gestion des ordures, routes mal entretenues</p>
+                </div>
+                
+                <div class="challenge-card">
+                    <div class="challenge-icon">💳</div>
+                    <h3 class="challenge-title">Paiement des taxes</h3>
+                    <p class="challenge-description">Processus compliqué et peu transparent</p>
+                </div>
+                
+                <div class="challenge-card">
+                    <div class="challenge-icon">🚌</div>
+                    <h3 class="challenge-title">Transport public</h3>
+                    <p class="challenge-description">Informations limitées sur les bus et voitures privées, stations-service avec l'essence difficiles à localiser</p>
+                </div>
+                
+                <!-- NOUVELLES FONCTIONNALITÉS -->
+                <div class="challenge-card new-feature">
+                    <div class="new-badge">NOUVEAU</div>
+                    <div class="challenge-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="challenge-title">Carnet de Ménage Digital</h3>
+                    <p class="challenge-description">Gestion des membres de famille et invités pour éviter les problèmes lors des contrôles policiers et réduire la corruption</p>
+                </div>
+                
+                <div class="challenge-card new-feature">
+                    <div class="new-badge">NOUVEAU</div>
+                    <div class="challenge-icon">📢</div>
+                    <h3 class="challenge-title">Communiqués Officiels</h3>
+                    <p class="challenge-description">Canal officiel pour les communications gouvernementales authentifiées, évitant les fausses informations sur les réseaux sociaux</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="solutions-section">
+            <h2 class="section-title">Solutions Intégrées</h2>
+            
+            <div class="solution-item">
+                <div class="solution-title">📱 Carnet de Ménage Numérique</div>
+                <p><strong>Fonctionnalités :</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Enregistrement des membres de famille permanents</li>
+                    <li>Déclaration d'invités temporaires avec dates de séjour</li>
+                    <li>Notification automatique au chef de quartier</li>
+                    <li>Validation officielle des déclarations</li>
+                    <li>Historique des visites et autorisations</li>
+                </ul>
+            </div>
+            
+            <div class="solution-item">
+                <div class="solution-title">📢 Centre de Communiqués Officiels</div>
+                <p><strong>Fonctionnalités :</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Publication par les autorités authentifiées (ministères, chefs de quartier)</li>
+                    <li>Système de vérification des sources officielles</li>
+                    <li>Notifications push pour les annonces importantes</li>
+                    <li>Catégorisation par type d'information (santé, sécurité, services, etc.)</li>
+                    <li>Feedback citoyen sur les communiqués</li>
+                </ul>
+            </div>
+            
+            <div class="solution-item">
+                <div class="solution-title">🚨 Signalement de Problèmes</div>
+                <p>Signalement des coupures d'eau/électricité, problèmes d'ordures, routes endommagées</p>
+            </div>
+            
+            <div class="solution-item">
+                <div class="solution-title">💳 Paiement de Taxes Simplifié</div>
+                <p>Interface transparente et sécurisée pour le paiement des taxes communales</p>
+            </div>
+            
+            <div class="solution-item">
+                <div class="solution-title">🗺️ Informations Transport</div>
+                <p>Localisation des transports publics et stations-service disponibles</p>
+            </div>
+            
+            <div class="benefits">
+                <h3>🎯 Bénéfices des Nouvelles Fonctionnalités</h3>
+                <ul class="benefits-list">
+                    <li><strong>Réduction de la corruption :</strong> Élimination des pots-de-vin lors des contrôles grâce à la documentation numérique</li>
+                    <li><strong>Simplification administrative :</strong> Plus besoin de chercher physiquement le chef de quartier</li>
+                    <li><strong>Transparence gouvernementale :</strong> Communications officielles vérifiées</li>
+                    <li><strong>Prévention des conflits :</strong> Déclarations préalables évitent les malentendus</li>
+                    <li><strong>Confiance citoyenne :</strong> Informations authentifiées vs fake news sur réseaux sociaux</li>
+                    <li><strong>Efficacité administrative :</strong> Notifications automatiques aux autorités locales</li>
+                </ul>
+            </div>
+            <div class="info-section">
+                <div class="info-card">
+                    <div class="info-title">Présenté par</div>
+                    <div class="info-content">Kantore Jean Gildas</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-title">Date</div>
+                    <div class="info-content">22 août 2025</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-title">Localisation</div>
+                    <div class="info-content">Bujumbura, Burundi</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+    
